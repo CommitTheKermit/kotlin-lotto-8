@@ -33,4 +33,16 @@ class WinningLottoTest {
             WinningLotto(Lotto(listOf(1,1,3,4,5,6)), 7)
         }
     }
+    @Test
+    fun `보너스 번호는 1 ~ 45 범위 안에 속해야 한다`() {
+        assertThrows<IllegalArgumentException> {
+            WinningLotto(Lotto(listOf(1,2,3,4,5,6)), 46)
+        }
+    }
+    @Test
+    fun `당첨 번호와 보너스 번호는 중복되지 않아야 한다`() {
+        assertThrows<IllegalArgumentException> {
+            WinningLotto(Lotto(listOf(1,2,3,4,5,6)), 1)
+        }
+    }
 }
