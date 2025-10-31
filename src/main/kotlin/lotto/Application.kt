@@ -1,5 +1,7 @@
 package lotto
 
+import lotto.controller.LotteryController
+
 fun main() {
-    // TODO: 프로그램 구현
+    LotteryController().run();
 }
