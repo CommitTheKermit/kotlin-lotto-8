@@ -10,6 +10,10 @@ class WinningLotto(private val lotto : Lotto, private val bonusNumber : Int){
         }
     }
 
+    fun getLotto() = lotto
+
+    fun getBonusNumber() = bonusNumber
+
 
 
 }
