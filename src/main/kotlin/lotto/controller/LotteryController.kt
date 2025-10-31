@@ -21,5 +21,15 @@ class LotteryController {
 
         OutputView.showBonusNumberGuide()
         val bonusNumber = InputView.readLine().toInt()
+
+        val winningLotto = WinningLotto(Lotto(winningNumbers.map { it.toInt() }), bonusNumber)
+
+        val lottoMatcher = LottoMatcher(winningLotto)
+        val prizes = lottoMatcher.match(userLotto.getLottos())
+
+        val lottoStatistics = LottoResult(prizes)
+        OutputView.showLottoStatistics(lottoStatistics)
+
+
     }
 }
