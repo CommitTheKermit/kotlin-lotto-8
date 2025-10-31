@@ -18,5 +18,8 @@ class LotteryController {
 
         OutputView.showWinningLottoGuide()
         val winningNumbers = InputView.readLine().split(",")
+
+        OutputView.showBonusNumberGuide()
+        val bonusNumber = InputView.readLine().toInt()
     }
 }

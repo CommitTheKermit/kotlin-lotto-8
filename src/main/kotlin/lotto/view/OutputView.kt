@@ -19,4 +19,8 @@ object OutputView {
     fun showWinningLottoGuide(){
         println("당첨 번호를 입력해 주세요.")
     }
+
+    fun showBonusNumberGuide(){
+        println("보너스 번호를 입력해 주세요.")
+    }
 }
