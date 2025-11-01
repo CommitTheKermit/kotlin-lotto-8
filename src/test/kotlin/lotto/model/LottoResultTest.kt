@@ -60,4 +60,20 @@ class LottoResultTest {
 
         assertThat(result.getProfitPercent()).isEqualTo(62.5)
     }
+
+    @Test
+    fun `수익률 반올림, 올리는 경우`() {
+        val prizes = List(1) { Prize.FIFTH } + List(8) { Prize.NONE }
+        val result = LottoResult(prizes)
+
+        assertThat(result.getProfitPercent()).isEqualTo(55.6)
+    }
+
+    @Test
+    fun `수익률 반올림, 내리는 경우`() {
+        val prizes = List(1) { Prize.FIFTH } + List(5) { Prize.NONE }
+        val result = LottoResult(prizes)
+
+        assertThat(result.getProfitPercent()).isEqualTo(83.3)
+    }
 }
