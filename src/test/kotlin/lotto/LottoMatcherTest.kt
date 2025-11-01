@@ -1,5 +1,6 @@
 package lotto
 
+import lotto.model.BonusNumber
 import lotto.model.LottoMatcher
 import lotto.model.Prize
 import lotto.model.WinningLotto
@@ -9,10 +10,11 @@ import org.junit.jupiter.api.Test
 class LottoMatcherTest {
     @Test
     fun `1등의 경우`() {
+        val winningLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val bonusNumber = BonusNumber(7, winningLotto)
+
         assertThat(
-            LottoMatcher(
-                WinningLotto(Lotto(listOf(1, 2, 3, 4, 5, 6)), 7),
-            ).match(
+            LottoMatcher(WinningLotto(winningLotto, bonusNumber)).match(
                 listOf(Lotto(listOf(1, 2, 3, 4, 5, 6)))
             )
         ).isEqualTo(listOf(Prize.FIRST))
@@ -20,10 +22,11 @@ class LottoMatcherTest {
 
     @Test
     fun `2등의 경우`() {
+        val winningLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val bonusNumber = BonusNumber(7, winningLotto)
+
         assertThat(
-            LottoMatcher(
-                WinningLotto(Lotto(listOf(1, 2, 3, 4, 5, 6)), 7),
-            ).match(
+            LottoMatcher(WinningLotto(winningLotto, bonusNumber)).match(
                 listOf(Lotto(listOf(1, 2, 3, 4, 5, 7)))
             )
         ).isEqualTo(listOf(Prize.SECOND))
@@ -31,10 +34,11 @@ class LottoMatcherTest {
 
     @Test
     fun `3등의 경우`() {
+        val winningLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val bonusNumber = BonusNumber(7, winningLotto)
+
         assertThat(
-            LottoMatcher(
-                WinningLotto(Lotto(listOf(1, 2, 3, 4, 5, 6)), 7),
-            ).match(
+            LottoMatcher(WinningLotto(winningLotto, bonusNumber)).match(
                 listOf(Lotto(listOf(1, 2, 3, 4, 5, 8)))
             )
         ).isEqualTo(listOf(Prize.THIRD))
@@ -42,10 +46,11 @@ class LottoMatcherTest {
 
     @Test
     fun `4등의 경우`() {
+        val winningLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val bonusNumber = BonusNumber(7, winningLotto)
+
         assertThat(
-            LottoMatcher(
-                WinningLotto(Lotto(listOf(1, 2, 3, 4, 5, 6)), 7),
-            ).match(
+            LottoMatcher(WinningLotto(winningLotto, bonusNumber)).match(
                 listOf(Lotto(listOf(1, 2, 3, 4, 7, 8)))
             )
         ).isEqualTo(listOf(Prize.FOURTH))
@@ -53,10 +58,11 @@ class LottoMatcherTest {
 
     @Test
     fun `5등의 경우`() {
+        val winningLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val bonusNumber = BonusNumber(7, winningLotto)
+
         assertThat(
-            LottoMatcher(
-                WinningLotto(Lotto(listOf(1, 2, 3, 4, 5, 6)), 7),
-            ).match(
+            LottoMatcher(WinningLotto(winningLotto, bonusNumber)).match(
                 listOf(Lotto(listOf(1, 2, 3, 7, 8, 9)))
             )
         ).isEqualTo(listOf(Prize.FIFTH))
@@ -64,13 +70,13 @@ class LottoMatcherTest {
 
     @Test
     fun `낙첨`() {
+        val winningLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
+        val bonusNumber = BonusNumber(7, winningLotto)
+
         assertThat(
-            LottoMatcher(
-                WinningLotto(Lotto(listOf(1, 2, 3, 4, 5, 6)), 7),
-            ).match(
+            LottoMatcher(WinningLotto(winningLotto, bonusNumber)).match(
                 listOf(Lotto(listOf(7, 8, 9, 10, 11, 12)))
             )
         ).isEqualTo(listOf(Prize.NONE))
     }
-
 }
