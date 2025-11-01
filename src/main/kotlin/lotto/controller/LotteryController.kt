@@ -22,8 +22,6 @@ class LotteryController {
         showLottoResult(prizes)
     }
 
-
-
     fun generateUserLotto(): User {
         while (true) {
             try {
