@@ -31,16 +31,16 @@ object OutputView {
         println(Messages.STATISTICS_TITLE)
         println(Messages.STATISTICS_DIVIDER)
 
-        val priezs = Prize.entries.filter { it != Prize.NONE }
+        val prizes = Prize.entries.filter { it != Prize.NONE }
 
-        priezs.reversed().forEach {
+        prizes.reversed().forEach {
             showPlace(it, lottoStatistics.getPrizeCount(it))
         }
         println(OutputFormat.PROFIT_PERCENT.format(lottoStatistics.getProfitPercent()))
     }
 
     private fun showPlace(prize: Prize, prizeCount: Int) {
-        if(prize.bonusMatched){
+        if (prize.bonusMatched) {
             println(OutputFormat.PLACE_BONUS.format(prize.matchCount, prize.prizeMoney, prizeCount))
             return
         }
