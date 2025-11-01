@@ -2,12 +2,12 @@ package lotto.model
 
 import lotto.Lotto
 
-class LottoMatcher(private val winningLotto : WinningLotto) {
+class LottoMatcher(private val winningLotto: WinningLotto) {
 
-    fun match(lottos : List<Lotto>): List<Prize> {
+    fun match(lottos: List<Lotto>): List<Prize> {
         val prizes =
-        lottos.map { lotto ->
-            getPrize(lotto)
+            lottos.map { lotto ->
+                getPrize(lotto)
             }
         return prizes
     }
@@ -16,7 +16,7 @@ class LottoMatcher(private val winningLotto : WinningLotto) {
         val winningNumber = winningLotto.getLotto()
         val matchCount = winningNumber.matchCount(lotto)
 
-        return when(matchCount) {
+        return when (matchCount) {
             6 -> Prize.FIRST
             5 -> matchBonusNumber(lotto)
             4 -> Prize.FOURTH
@@ -25,8 +25,8 @@ class LottoMatcher(private val winningLotto : WinningLotto) {
         }
     }
 
-    private fun matchBonusNumber(lotto : Lotto) : Prize{
-        if(lotto.getNumbers().contains(winningLotto.getBonusNumber())){
+    private fun matchBonusNumber(lotto: Lotto): Prize {
+        if (lotto.getNumbers().contains(winningLotto.getBonusNumber())) {
             return Prize.SECOND
         }
         return Prize.THIRD
