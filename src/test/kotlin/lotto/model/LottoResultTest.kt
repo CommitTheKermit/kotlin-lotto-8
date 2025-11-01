@@ -1,9 +1,5 @@
-package lotto
+package lotto.model
 
-import lotto.model.LottoMatcher
-import lotto.model.LottoResult
-import lotto.model.Prize
-import lotto.model.WinningLotto
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
