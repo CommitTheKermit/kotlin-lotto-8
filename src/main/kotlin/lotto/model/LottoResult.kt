@@ -1,7 +1,7 @@
 package lotto.model
 
+import lotto.constants.LottoConfig
 import java.math.RoundingMode
-import kotlin.math.round
 
 class LottoResult(private val prizes: List<Prize>) {
     private val prizeCount: Map<Prize, Int>
@@ -14,7 +14,7 @@ class LottoResult(private val prizes: List<Prize>) {
 
         profitSum = prizes.sumOf { it.prizeMoney }
 
-        val originalPercent = (profitSum / (prizes.size * 1000.0) * 100)
+        val originalPercent = (profitSum / (prizes.size * LottoConfig.PRICE) * 100)
         val roundPercent = originalPercent.toBigDecimal()
         profitPercent = roundPercent.setScale(1, RoundingMode.HALF_UP).toDouble()
     }
