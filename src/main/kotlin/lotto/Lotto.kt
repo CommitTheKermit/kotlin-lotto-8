@@ -1,11 +1,13 @@
 package lotto
 
+import lotto.constants.ErrorMessages
+
 class Lotto(private val numbers: List<Int>) {
     init {
-        require(numbers.size == 6) { "[ERROR] 로또 번호는 6개여야 합니다." }
-        require(numbers.distinct().size == 6) { "[ERROR] 중복된 번호가 있습니다." }
-        require(numbers.sortedBy { it } == numbers) { "[ERROR] 로또 번호는 오름차순이어야 합니다." }
-        require(numbers.all { it in 1..45 }) { "[ERROR] 로또 번호는 1 이상 45 이하의 수여야 합니다." }
+        require(numbers.size == 6) { ErrorMessages.LOTTO_COUNT }
+        require(numbers.distinct().size == 6) { ErrorMessages.LOTTO_DUPLICATE }
+        require(numbers.sortedBy { it } == numbers) { ErrorMessages.LOTTO_ORDER }
+        require(numbers.all { it in 1..45 }) { ErrorMessages.LOTTO_RANGE }
     }
 
     fun matchCount(other: Lotto): Int = numbers.count { it in other.getNumbers() }

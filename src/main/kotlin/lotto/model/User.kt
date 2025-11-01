@@ -2,6 +2,7 @@ package lotto.model
 
 import camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange
 import lotto.Lotto
+import lotto.constants.ErrorMessages
 
 class User(private val moneyInput: String) {
     private val lottos: List<Lotto>
@@ -9,8 +10,8 @@ class User(private val moneyInput: String) {
 
     init {
         val testMoney = moneyInput.toIntOrNull()
-        require(testMoney != null) { "[ERROR] 정수가 아닌 입력값입니다. " }
-        require(testMoney % 1000 == 0) { "[ERROR] 로또 금액은 1000원 단위여야 합니다." }
+        require(testMoney != null) { ErrorMessages.NOT_INTEGER }
+        require(testMoney % 1000 == 0) { ErrorMessages.MONEY_UNIT }
         money = testMoney
 
         lottos = generateLottos()

@@ -1,39 +1,40 @@
 package lotto.view
 
+import lotto.constants.Messages
+import lotto.constants.OutputFormat
 import lotto.model.LottoResult
 import lotto.model.Prize
 import lotto.model.User
 
-
 object OutputView {
-    fun showAmountInputGuide(){
-        println("구입금액을 입력해 주세요.")
+    fun showAmountInputGuide() {
+        println(Messages.AMOUNT_INPUT_GUIDE)
     }
 
-    fun showUserLottos(userLotto: User){
+    fun showUserLottos(userLotto: User) {
         val lottos = userLotto.getLottos()
-        println("${lottos.size}개를 구매했습니다.")
+        println(OutputFormat.PURCHASED_COUNT.format(lottos.size))
         lottos.forEach {
-            println("[" + it.getNumbers().joinToString ( ", ") + "]" )
+            println("[" + it.getNumbers().joinToString(", ") + "]")
         }
     }
 
-    fun showWinningLottoGuide(){
-        println("당첨 번호를 입력해 주세요.")
+    fun showWinningLottoGuide() {
+        println(Messages.WINNING_LOTTO_GUIDE)
     }
 
-    fun showBonusNumberGuide(){
-        println("보너스 번호를 입력해 주세요.")
+    fun showBonusNumberGuide() {
+        println(Messages.BONUS_NUMBER_GUIDE)
     }
 
     fun showLottoStatistics(lottoStatistics: LottoResult) {
-        println("당첨 통계")
-        println("---")
-        println("3개 일치 (5,000원) - ${lottoStatistics.getPrizeCount(Prize.FIFTH)}개")
-        println("4개 일치 (50,000원) - ${lottoStatistics.getPrizeCount(Prize.FOURTH)}개")
-        println("5개 일치 (1,500,000원) - ${lottoStatistics.getPrizeCount(Prize.THIRD)}개")
-        println("5개 일치, 보너스 볼 일치 (30,000,000원) - ${lottoStatistics.getPrizeCount(Prize.SECOND)}개")
-        println("6개 일치 (2,000,000,000원) - ${lottoStatistics.getPrizeCount(Prize.FIRST)}개")
-        println("총 수익률은 ${lottoStatistics.getProfitPercent()}%입니다.")
+        println(Messages.STATISTICS_TITLE)
+        println(Messages.STATISTICS_DIVIDER)
+        println(OutputFormat.FIFTH_PLACE.format(lottoStatistics.getPrizeCount(Prize.FIFTH)))
+        println(OutputFormat.FOURTH_PLACE.format(lottoStatistics.getPrizeCount(Prize.FOURTH)))
+        println(OutputFormat.THIRD_PLACE.format(lottoStatistics.getPrizeCount(Prize.THIRD)))
+        println(OutputFormat.SECOND_PLACE.format(lottoStatistics.getPrizeCount(Prize.SECOND)))
+        println(OutputFormat.FIRST_PLACE.format(lottoStatistics.getPrizeCount(Prize.FIRST)))
+        println(OutputFormat.PROFIT_PERCENT.format(lottoStatistics.getProfitPercent()))
     }
 }
