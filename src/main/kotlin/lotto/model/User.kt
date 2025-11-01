@@ -22,7 +22,8 @@ class User(private val moneyInput: String) {
         val count = money / LottoConfig.PRICE
         val lottos = List(count) {
             val numberList = pickUniqueNumbersInRange(
-                LottoConfig.MIN_NUMBER, LottoConfig.MAX_NUMBER, LottoConfig.LOTTO_SIZE)
+                LottoConfig.MIN_NUMBER, LottoConfig.MAX_NUMBER, LottoConfig.LOTTO_SIZE
+            )
             numberList.sortBy { it }
             Lotto(numberList)
         }
@@ -30,7 +31,6 @@ class User(private val moneyInput: String) {
         return lottos
     }
 
-    fun getLottos(): List<Lotto> {
-        return lottos
-    }
+    fun getLottos(): List<Lotto> = lottos
+
 }
