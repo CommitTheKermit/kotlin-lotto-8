@@ -49,6 +49,93 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `금액 입력 실패 후 재입력 성공`() {
+        assertRandomUniqueNumbersInRangeTest(
+            {
+                run("invalid", "2000", "1,2,3,4,5,6", "7")
+                assertThat(output())
+                    .contains("[ERROR] 정수가 아닌 입력값입니다.")
+                    .contains("2개를 구매했습니다.")
+            },
+            listOf(1, 2, 3, 4, 5, 6),
+            listOf(7, 8, 9, 10, 11, 12)
+        )
+    }
+
+    @Test
+    fun `금액 단위 실패 후 재입력 성공`() {
+        assertRandomUniqueNumbersInRangeTest(
+            {
+                run("1500", "2000", "1,2,3,4,5,6", "7")
+                assertThat(output())
+                    .contains("[ERROR] 로또 금액은 1000원 단위여야 합니다.")
+                    .contains("2개를 구매했습니다.")
+            },
+            listOf(1, 2, 3, 4, 5, 6),
+            listOf(7, 8, 9, 10, 11, 12)
+        )
+    }
+
+    @Test
+    fun `당첨 번호 검증 실패 후 재입력 성공`() {
+        assertRandomUniqueNumbersInRangeTest(
+            {
+                run("2000", "1,2,3,4,5", "1,2,3,4,5,6", "7")
+                assertThat(output())
+                    .contains("[ERROR] 로또 번호는 6개여야 합니다.")
+                    .contains("2개를 구매했습니다.")
+            },
+            listOf(1, 2, 3, 4, 5, 6),
+            listOf(7, 8, 9, 10, 11, 12)
+        )
+    }
+
+    @Test
+    fun `보너스 번호 범위 검증 실패 후 재입력 성공`() {
+        assertRandomUniqueNumbersInRangeTest(
+            {
+                run("2000", "1,2,3,4,5,6", "46", "7")
+                assertThat(output())
+                    .contains("[ERROR] 보너스 번호는 1 이상 45 이하의 수여야 합니다.")
+                    .contains("2개를 구매했습니다.")
+            },
+            listOf(1, 2, 3, 4, 5, 6),
+            listOf(7, 8, 9, 10, 11, 12)
+        )
+    }
+
+    @Test
+    fun `보너스 번호 중복 검증 실패 후 재입력 성공`() {
+        assertRandomUniqueNumbersInRangeTest(
+            {
+                run("2000", "1,2,3,4,5,6", "6", "7")
+                assertThat(output())
+                    .contains("[ERROR] 당첨 번호와 보너스 번호는 중복 될 수 없습니다.")
+                    .contains("2개를 구매했습니다.")
+            },
+            listOf(1, 2, 3, 4, 5, 6),
+            listOf(7, 8, 9, 10, 11, 12)
+        )
+    }
+
+    @Test
+    fun `여러 단계에서 연속 실패 후 성공`() {
+        assertRandomUniqueNumbersInRangeTest(
+            {
+                run("abc", "1500", "2000", "1,2,3,4,5", "1,2,3,4,5,6", "50", "7")
+                assertThat(output())
+                    .contains("[ERROR] 정수가 아닌 입력값입니다.")
+                    .contains("[ERROR] 로또 금액은 1000원 단위여야 합니다.")
+                    .contains("[ERROR] 로또 번호는 6개여야 합니다.")
+                    .contains("[ERROR] 보너스 번호는 1 이상 45 이하의 수여야 합니다.")
+                    .contains("2개를 구매했습니다.")
+            },
+            listOf(1, 2, 3, 4, 5, 6),
+            listOf(7, 8, 9, 10, 11, 12)
+        )
+    }
+
     override fun runMain() {
         main()
     }
