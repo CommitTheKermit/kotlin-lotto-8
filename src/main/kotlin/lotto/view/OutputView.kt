@@ -46,4 +46,8 @@ object OutputView {
         }
         println(OutputFormat.PLACE_COMMON.format(prize.matchCount, prize.prizeMoney, prizeCount))
     }
+
+    fun showError(errorMessage: String) {
+        println(errorMessage)
+    }
 }

@@ -1,12 +1,7 @@
 package lotto.controller
 
 import lotto.Lotto
-import lotto.model.BonusNumber
-import lotto.model.LottoMatcher
-import lotto.model.LottoResult
-import lotto.model.Prize
-import lotto.model.User
-import lotto.model.WinningLotto
+import lotto.model.*
 import lotto.view.InputView
 import lotto.view.OutputView
 
@@ -31,7 +26,7 @@ class LotteryController {
                 OutputView.showUserLottos(userLotto)
                 return userLotto
             } catch (e: IllegalArgumentException) {
-                println(e.message)
+                OutputView.showError(e.message ?: "")
             }
         }
     }
@@ -43,7 +38,7 @@ class LotteryController {
                 val winningNumbers = InputView.readLine().split(",").map { it.toInt() }
                 return Lotto(winningNumbers)
             } catch (e: IllegalArgumentException) {
-                println(e.message)
+                OutputView.showError(e.message ?: "")
             }
         }
     }
@@ -55,7 +50,7 @@ class LotteryController {
                 val bonusNumber = InputView.readLine().toInt()
                 return BonusNumber(bonusNumber, winningLotto)
             } catch (e: IllegalArgumentException) {
-                println(e.message)
+                OutputView.showError(e.message ?: "")
             }
         }
     }
