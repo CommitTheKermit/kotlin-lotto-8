@@ -9,13 +9,13 @@ class UserTest {
     @Test
     fun `1000원 단위가 아니면 예외`() {
         assertThrows<IllegalArgumentException> {
-            User(1500)
+            User("1500")
         }
     }
 
     @Test
     fun `로또 개수 계산`() {
-        val user = User(5000)
+        val user = User("5000")
         assertThat(user.getLottos().size).isEqualTo(5)
     }
 }
