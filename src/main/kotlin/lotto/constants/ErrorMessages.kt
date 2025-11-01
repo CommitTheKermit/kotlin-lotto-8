@@ -9,4 +9,5 @@ object ErrorMessages {
     const val MONEY_UNIT = "[ERROR] 로또 금액은 1000원 단위여야 합니다."
     const val BONUS_RANGE = "[ERROR] 보너스 번호는 1 이상 45 이하의 수여야 합니다."
     const val BONUS_DUPLICATE = "[ERROR] 당첨 번호와 보너스 번호는 중복 될 수 없습니다."
+    const val NOT_EQUAL_ARGUMENT_COUNT = "[ERROR] 인자 개수가 일치하지 않습니다."
 }

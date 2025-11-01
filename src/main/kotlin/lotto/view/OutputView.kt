@@ -30,11 +30,20 @@ object OutputView {
     fun showLottoStatistics(lottoStatistics: LottoResult) {
         println(Messages.STATISTICS_TITLE)
         println(Messages.STATISTICS_DIVIDER)
-        println(OutputFormat.FIFTH_PLACE.format(lottoStatistics.getPrizeCount(Prize.FIFTH)))
-        println(OutputFormat.FOURTH_PLACE.format(lottoStatistics.getPrizeCount(Prize.FOURTH)))
-        println(OutputFormat.THIRD_PLACE.format(lottoStatistics.getPrizeCount(Prize.THIRD)))
-        println(OutputFormat.SECOND_PLACE.format(lottoStatistics.getPrizeCount(Prize.SECOND)))
-        println(OutputFormat.FIRST_PLACE.format(lottoStatistics.getPrizeCount(Prize.FIRST)))
+
+        val priezs = Prize.entries.filter { it != Prize.NONE }
+
+        priezs.reversed().forEach {
+            showPlace(it, lottoStatistics.getPrizeCount(it))
+        }
         println(OutputFormat.PROFIT_PERCENT.format(lottoStatistics.getProfitPercent()))
+    }
+
+    private fun showPlace(prize: Prize, prizeCount: Int) {
+        if(prize.bonusMatched){
+            println(OutputFormat.PLACE_BONUS.format(prize.matchCount, prize.prizeMoney, prizeCount))
+            return
+        }
+        println(OutputFormat.PLACE_COMMON.format(prize.matchCount, prize.prizeMoney, prizeCount))
     }
 }
