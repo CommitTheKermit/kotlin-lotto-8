@@ -15,20 +15,8 @@ class LottoMatcher(private val winningLotto: WinningLotto) {
     private fun getPrize(lotto: Lotto): Prize {
         val winningNumber = winningLotto.getLotto()
         val matchCount = winningNumber.matchCount(lotto)
+        val isBonusMatch = lotto.getNumbers().contains(winningLotto.getBonusNumber())
 
-        return when (matchCount) {
-            6 -> Prize.FIRST
-            5 -> matchBonusNumber(lotto)
-            4 -> Prize.FOURTH
-            3 -> Prize.FIFTH
-            else -> Prize.NONE
-        }
-    }
-
-    private fun matchBonusNumber(lotto: Lotto): Prize {
-        if (lotto.getNumbers().contains(winningLotto.getBonusNumber())) {
-            return Prize.SECOND
-        }
-        return Prize.THIRD
+        return Prize.of(matchCount, isBonusMatch)
     }
 }
