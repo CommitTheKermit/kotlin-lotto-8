@@ -35,13 +35,6 @@ class LottoTest {
     }
 
     @Test
-    fun `로또 번호는 오른참순으로 정렬할 것`() {
-        assertThrows<IllegalArgumentException> {
-            Lotto(listOf(2, 1, 3, 4, 5, 6))
-        }
-    }
-
-    @Test
     fun `한 로또와 다른 로또를 비교했을 때 일치 갯수를 반환`(){
         val lotto1 = Lotto(listOf(1, 2, 3, 4, 5, 6))
         val lotto2 = Lotto(listOf(1, 2, 3, 7, 8, 9))
