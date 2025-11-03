@@ -13,8 +13,8 @@ enum class Prize(
     NONE(0, false, 0);
 
     companion object {
-        fun of(matchCount: Int, bonusMatched: Boolean): Prize {
-            return when (matchCount) {
+        fun of(matchCount: Int, bonusMatched: Boolean): Prize =
+             when (matchCount) {
                 FIRST.matchCount -> FIRST
                 SECOND.matchCount if bonusMatched -> SECOND
                 THIRD.matchCount -> THIRD
@@ -22,6 +22,5 @@ enum class Prize(
                 FIFTH.matchCount -> FIFTH
                 else -> NONE
             }
-        }
     }
 }
