@@ -3,7 +3,6 @@ package lotto.constants
 object ErrorMessages {
     const val LOTTO_COUNT = "[ERROR] 로또 번호는 6개여야 합니다."
     const val LOTTO_DUPLICATE = "[ERROR] 중복된 번호가 있습니다."
-    const val LOTTO_ORDER = "[ERROR] 로또 번호는 오름차순이어야 합니다."
     const val LOTTO_RANGE = "[ERROR] 로또 번호는 1 이상 45 이하의 수여야 합니다."
     const val NOT_INTEGER = "[ERROR] 정수가 아닌 입력값입니다."
     const val NOT_POSITIVE_PRICE = "[ERROR] 금액은 0보다 커야 합니다."

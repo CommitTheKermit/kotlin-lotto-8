@@ -7,7 +7,6 @@ class Lotto(private val numbers: List<Int>) {
     init {
         require(numbers.size == LottoConfig.LOTTO_SIZE) { ErrorMessages.LOTTO_COUNT }
         require(numbers.distinct().size == LottoConfig.LOTTO_SIZE) { ErrorMessages.LOTTO_DUPLICATE }
-        require(numbers.sortedBy { it } == numbers) { ErrorMessages.LOTTO_ORDER }
         require(numbers.all { it in LottoConfig.MIN_NUMBER..LottoConfig.MAX_NUMBER }) { ErrorMessages.LOTTO_RANGE }
     }
 

@@ -15,7 +15,9 @@ object OutputView {
         val lottos = userLotto.getLottos()
         println(OutputFormat.PURCHASED_COUNT.format(lottos.size))
         lottos.forEach {
-            println("[" + it.getNumbers().joinToString(", ") + "]")
+            val sortedLottoNumber = it.getNumbers().sortedBy { number -> number }
+
+            println("[" + sortedLottoNumber.joinToString(", ") + "]")
         }
     }
 

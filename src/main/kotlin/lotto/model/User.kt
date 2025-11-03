@@ -25,7 +25,6 @@ class User(private val moneyInput: String) {
             val numberList = pickUniqueNumbersInRange(
                 LottoConfig.MIN_NUMBER, LottoConfig.MAX_NUMBER, LottoConfig.LOTTO_SIZE
             )
-            numberList.sortBy { it }
             Lotto(numberList)
         }
 
