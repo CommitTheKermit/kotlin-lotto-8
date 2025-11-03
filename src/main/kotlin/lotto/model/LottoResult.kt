@@ -14,7 +14,7 @@ class LottoResult(private val prizes: List<Prize>) {
 
         profitSum = prizes.sumOf { it.prizeMoney }
 
-        val originalPercent = (profitSum / (prizes.size * LottoConfig.PRICE) * 100)
+        val originalPercent = (profitSum * 100.0 / (prizes.size * LottoConfig.PRICE))
         val roundPercent = originalPercent.toBigDecimal()
         profitPercent = roundPercent.setScale(1, RoundingMode.HALF_UP).toDouble()
     }
