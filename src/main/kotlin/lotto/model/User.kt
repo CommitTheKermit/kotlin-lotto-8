@@ -12,6 +12,7 @@ class User(private val moneyInput: String) {
     init {
         val testMoney = moneyInput.toIntOrNull()
         require(testMoney != null) { ErrorMessages.NOT_INTEGER }
+        require(testMoney > 0) { ErrorMessages.NOT_POSITIVE_PRICE }
         require(testMoney % LottoConfig.PRICE == 0) { ErrorMessages.MONEY_UNIT }
         money = testMoney
 
