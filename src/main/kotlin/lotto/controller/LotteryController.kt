@@ -22,7 +22,7 @@ class LotteryController {
         while (true) {
             try {
                 OutputView.showAmountInputGuide()
-                val amount = InputView.readLine()
+                val amount = InputParser.parseNumber(InputView.readLine())
                 val userLotto = User(amount)
                 OutputView.showUserLottos(userLotto)
                 return userLotto

@@ -5,16 +5,12 @@ import lotto.Lotto
 import lotto.constants.ErrorMessages
 import lotto.constants.LottoConfig
 
-class User(private val moneyInput: String) {
+class User(private val money: Int) {
     private val lottos: List<Lotto>
-    private val money: Int
 
     init {
-        val testMoney = moneyInput.toIntOrNull()
-        require(testMoney != null) { ErrorMessages.NOT_INTEGER }
-        require(testMoney > 0) { ErrorMessages.NOT_POSITIVE_PRICE }
-        require(testMoney % LottoConfig.PRICE == 0) { ErrorMessages.MONEY_UNIT }
-        money = testMoney
+        require(money > 0) { ErrorMessages.NOT_POSITIVE_PRICE }
+        require(money % LottoConfig.PRICE == 0) { ErrorMessages.MONEY_UNIT }
 
         lottos = generateLottos()
     }
