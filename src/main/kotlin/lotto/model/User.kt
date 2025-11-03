@@ -17,14 +17,14 @@ class User(private val money: Int) {
 
     fun generateLottos(): List<Lotto> {
         val count = money / LottoConfig.PRICE
-        val lottos = List(count) {
-            val numberList = pickUniqueNumbersInRange(
-                LottoConfig.MIN_NUMBER, LottoConfig.MAX_NUMBER, LottoConfig.LOTTO_SIZE
-            )
-            Lotto(numberList)
-        }
+        return List(count) { createRandomLotto() }
+    }
 
-        return lottos
+    private fun createRandomLotto(): Lotto {
+        val numberList = pickUniqueNumbersInRange(
+            LottoConfig.MIN_NUMBER, LottoConfig.MAX_NUMBER, LottoConfig.LOTTO_SIZE
+        )
+        return Lotto(numberList)
     }
 
     fun getLottos(): List<Lotto> = lottos
