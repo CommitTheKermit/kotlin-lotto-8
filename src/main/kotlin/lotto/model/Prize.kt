@@ -14,9 +14,14 @@ enum class Prize(
 
     companion object {
         fun of(matchCount: Int, bonusMatched: Boolean): Prize {
-            return entries.firstOrNull {
-                it.matchCount == matchCount && it.bonusMatched == bonusMatched
-            } ?: NONE
+            return when (matchCount) {
+                FIRST.matchCount -> FIRST
+                SECOND.matchCount if bonusMatched -> SECOND
+                THIRD.matchCount -> THIRD
+                FOURTH.matchCount -> FOURTH
+                FIFTH.matchCount -> FIFTH
+                else -> NONE
+            }
         }
     }
 }
