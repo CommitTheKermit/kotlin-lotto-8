@@ -2,6 +2,7 @@ package lotto.controller
 
 import lotto.Lotto
 import lotto.model.*
+import lotto.parser.InputParser
 import lotto.view.InputView
 import lotto.view.OutputView
 
@@ -35,7 +36,7 @@ class LotteryController {
         while (true) {
             try {
                 OutputView.showWinningLottoGuide()
-                val winningNumbers = InputView.readLine().split(",").map { it.toInt() }
+                val winningNumbers = InputParser.parseNumbers(InputView.readLine())
                 return Lotto(winningNumbers)
             } catch (e: IllegalArgumentException) {
                 OutputView.showError(e.message ?: "")
@@ -47,7 +48,7 @@ class LotteryController {
         while (true) {
             try {
                 OutputView.showBonusNumberGuide()
-                val bonusNumber = InputView.readLine().toInt()
+                val bonusNumber = InputParser.parseNumber(InputView.readLine())
                 return BonusNumber(bonusNumber, winningLotto)
             } catch (e: IllegalArgumentException) {
                 OutputView.showError(e.message ?: "")
